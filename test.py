@@ -157,7 +157,7 @@ class Ui_MainWindow(object):
         pd_array = pd.DataFrame(self.data)
         pd_array = pd_array.transpose()
         result = Pickled_LR_Model.predict(pd_array)
-        print("Принимая субатрамин вы похудеете на " + str(*result) + "%")
+        print("Принимая субатрамин вы похудеете на " + str(*result) + "% в течении 3 месяцев")
         # return self.data
 
 if __name__ == '__main__':
