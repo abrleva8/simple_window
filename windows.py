@@ -6,14 +6,15 @@ from sklearn import preprocessing
 
 class Ui_MainWindow(object):
 
-    data = []
+    data_sibutramin = []
+    data_diet = []
     labels = []
     text_edits = []
 
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(320, 416)
+        MainWindow.resize(440, 500)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -31,7 +32,7 @@ class Ui_MainWindow(object):
         self.l_snils.setObjectName("l_snils")
 
         self.te_snils = QtWidgets.QTextEdit(self.centralwidget)
-        self.te_snils.setGeometry(QtCore.QRect(130, 10, 104, 31))
+        self.te_snils.setGeometry(QtCore.QRect(140, 10, 104, 31))
         self.te_snils.setObjectName("te_snils")
 
         self.l_pet = QtWidgets.QLabel(self.centralwidget)
@@ -41,7 +42,7 @@ class Ui_MainWindow(object):
         self.l_pet.setObjectName("l_pet")
 
         self.cb_pet = QtWidgets.QComboBox(self.centralwidget)
-        self.cb_pet.setGeometry(QtCore.QRect(130, 50, 104, 31))
+        self.cb_pet.setGeometry(QtCore.QRect(140, 50, 104, 31))
         self.cb_pet.setFont(font)
         self.cb_pet.setObjectName("cb_pet")
         self.cb_pet.addItem("")
@@ -55,7 +56,7 @@ class Ui_MainWindow(object):
         self.l_mzo.setObjectName("l_mzo")
 
         self.cb_mzo = QtWidgets.QComboBox(self.centralwidget)
-        self.cb_mzo.setGeometry(QtCore.QRect(130, 90, 104, 31))
+        self.cb_mzo.setGeometry(QtCore.QRect(140, 90, 104, 31))
         self.cb_mzo.setFont(font)
         self.cb_mzo.setObjectName("cb_mzo")
         self.cb_mzo.addItem("")
@@ -69,7 +70,7 @@ class Ui_MainWindow(object):
         self.l_ohs.setObjectName("l_ohs")
 
         self.te_ohs = QtWidgets.QTextEdit(self.centralwidget)
-        self.te_ohs.setGeometry(QtCore.QRect(130, 130, 104, 31))
+        self.te_ohs.setGeometry(QtCore.QRect(140, 130, 104, 31))
         self.te_ohs.setObjectName("te_ohs")
         self.text_edits.append(self.te_ohs)
 
@@ -80,7 +81,7 @@ class Ui_MainWindow(object):
         self.l_lpnp.setObjectName("l_lpnp")
 
         self.te_lpnp = QtWidgets.QTextEdit(self.centralwidget)
-        self.te_lpnp.setGeometry(QtCore.QRect(130, 210, 104, 31))
+        self.te_lpnp.setGeometry(QtCore.QRect(140, 210, 104, 31))
         self.te_lpnp.setObjectName("te_lpnp")
         self.text_edits.append(self.te_lpnp)
 
@@ -91,7 +92,7 @@ class Ui_MainWindow(object):
         self.l_lpvp.setObjectName("l_lpvp")
 
         self.te_lpvp = QtWidgets.QTextEdit(self.centralwidget)
-        self.te_lpvp.setGeometry(QtCore.QRect(130, 170, 104, 31))
+        self.te_lpvp.setGeometry(QtCore.QRect(140, 170, 104, 31))
         self.te_lpvp.setObjectName("te_lpvp")
         self.text_edits.append(self.te_lpvp)
 
@@ -102,12 +103,57 @@ class Ui_MainWindow(object):
         self.l_tg.setObjectName("l_tg")
 
         self.te_tg = QtWidgets.QTextEdit(self.centralwidget)
-        self.te_tg.setGeometry(QtCore.QRect(130, 250, 104, 31))
+        self.te_tg.setGeometry(QtCore.QRect(140, 250, 104, 31))
         self.te_tg.setObjectName("te_tg")
         self.text_edits.append(self.te_tg)
 
+        self.l_height = QtWidgets.QLabel(self.centralwidget)
+        self.l_height.setGeometry(QtCore.QRect(50, 290, 71, 31))
+        self.l_height.setFont(font)
+        self.l_height.setAlignment(QtCore.Qt.AlignCenter)
+        self.l_height.setObjectName("l_height")
+
+        self.te_height = QtWidgets.QTextEdit(self.centralwidget)
+        self.te_height.setGeometry(QtCore.QRect(140, 290, 104, 31))
+        self.te_height.setObjectName("te_height")
+        self.text_edits.append(self.te_height)
+
+        self.l_hips_girph = QtWidgets.QLabel(self.centralwidget)
+        self.l_hips_girph.setGeometry(QtCore.QRect(20, 330, 101, 31))
+        self.l_hips_girph.setFont(font)
+        self.l_hips_girph.setAlignment(QtCore.Qt.AlignCenter)
+        self.l_hips_girph.setObjectName("l_hips_girph")
+
+        self.te_hips_girph = QtWidgets.QTextEdit(self.centralwidget)
+        self.te_hips_girph.setGeometry(QtCore.QRect(140, 330, 104, 31))
+        self.te_hips_girph.setObjectName("te_hips_girph")
+        self.text_edits.append(self.te_hips_girph)
+
+        self.l_noms_index_ir = QtWidgets.QLabel(self.centralwidget)
+        self.l_noms_index_ir.setGeometry(QtCore.QRect(0, 410, 141, 31))
+        self.l_noms_index_ir.setFont(font)
+        self.l_noms_index_ir.setAlignment(QtCore.Qt.AlignCenter)
+        self.l_noms_index_ir.setObjectName("l_noms_index_ir")
+
+        self.te_noms_index_ir = QtWidgets.QTextEdit(self.centralwidget)
+        self.te_noms_index_ir.setGeometry(QtCore.QRect(140, 410, 104, 31))
+        self.te_noms_index_ir.setObjectName("te_noms_index_ir")
+        self.text_edits.append(self.te_noms_index_ir)
+
+        self.l_glucose = QtWidgets.QLabel(self.centralwidget)
+        self.l_glucose.setGeometry(QtCore.QRect(50, 370, 71, 31))
+        self.l_glucose.setFont(font)
+        self.l_glucose.setAlignment(QtCore.Qt.AlignCenter)
+        self.l_glucose.setObjectName("l_glucose")
+
+        self.te_glucose = QtWidgets.QTextEdit(self.centralwidget)
+        self.te_glucose.setGeometry(QtCore.QRect(140, 370, 104, 31))
+        self.te_glucose.setObjectName("te_glucose")
+        self.text_edits.append(self.te_glucose)
+
+
         self.btn_prediction = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_prediction.setGeometry(QtCore.QRect(90, 300, 121, 51))
+        self.btn_prediction.setGeometry(QtCore.QRect(300, 300, 121, 51))
         self.btn_prediction.setObjectName("btn_prediction")
         self.btn_prediction.clicked.connect(self.get_data_from_label)
 
@@ -138,28 +184,47 @@ class Ui_MainWindow(object):
         self.l_pet.setText(_translate("MainWindow", "ПЭТ"))
         self.btn_prediction.setText(_translate("MainWindow", "Предсказать"))
         self.l_lpnp.setText(_translate("MainWindow", "ЛПНП"))
+        self.l_noms_index_ir.setText(_translate("MainWindow", "Индекс Нома - IR"))
+        self.l_hips_girph.setText(_translate("MainWindow", "Обхват бедер"))
+        self.l_height.setText(_translate("MainWindow", "Рост"))
+        self.l_glucose.setText(_translate("MainWindow", "Глюкоза"))
+
 
     def get_data_from_label(self):
-        self.data = []
+        self.data_sibutramin = []
+        self.data_diet = []
         for text_edit in self.text_edits:
-            if text_edit == self.cb_pet:
-                data_to_add = 1 if text_edit.currentText() == 'да' else 0
+            if text_edit in [self.te_height, self.te_glucose, self.te_hips_girph, self.te_noms_index_ir]:
+                data_to_add_diet = text_edit.toPlainText()
+                self.data_diet.append(float(data_to_add_diet))
+                continue
+            elif text_edit == self.cb_pet:
+                data_to_add_sibutramin = 1 if text_edit.currentText() == 'да' else 0
             elif text_edit == self.cb_mzo:
-                data_to_add = 1 if text_edit.currentText() == 'МЗО' else 0
+                data_to_add_sibutramin = 1 if text_edit.currentText() == 'МЗО' else 0
             else:
-                data_to_add = text_edit.toPlainText()
-            self.data.append(float(data_to_add))
-        print(*self.data)
+                data_to_add_sibutramin = text_edit.toPlainText()
+            self.data_sibutramin.append(float(data_to_add_sibutramin))
+        print(*self.data_sibutramin)
+        print(*self.data_diet)
         sib_filename = "sibutramin17_05.pkl"
+        diet_filename = "diet_21_05.pkl"
         with open(sib_filename, 'rb') as file:
-            sib_clf = pickle.load(file)
-        print(5)
+            sib_clf_sib = pickle.load(file)
+            file.close()
+        with open(diet_filename, 'rb') as diet_file:
+            sib_clf_diet = pickle.load(diet_file)
         # print(sib_clf)
-        pd_array = pd.DataFrame(self.data)
+        pd_array = pd.DataFrame(self.data_sibutramin)
         pd_array = preprocessing.scale(pd_array)
         pd_array = pd_array.transpose()
-        result = sib_clf.predict(pd_array)
-        print("Принимая субатрамин вы похудеете на " + str(*result) + "% в течение 3 месяцев")
+        result = sib_clf_sib.predict(pd_array)
+        pd_array_diet = pd.DataFrame(self.data_diet)
+        pd_array_diet = preprocessing.scale(pd_array_diet)
+        pd_array_diet = pd_array_diet.transpose()
+        result_diet = sib_clf_diet.predict(pd_array_diet)
+        print("Принимая сибутрамин вы похудеете на " + str(*result) + "% в течение 3 месяцев")
+        print("Соблюдая диету вы похудеете на " + str(*result_diet) + "% в течение 3 месяцев")
 
 
 if __name__ == '__main__':
