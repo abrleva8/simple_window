@@ -67,6 +67,7 @@ class UiMainWindow(object):
         self.l_snils.setFont(font)
         self.l_snils.setAlignment(QtCore.Qt.AlignCenter)
         self.l_snils.setObjectName("l_snils")
+        self.l_snils.setToolTip("СНИЛС")
 
         self.te_snils.setGeometry(QtCore.QRect(100, 10, 104, 31))
         self.te_snils.setObjectName("te_snils")
@@ -76,6 +77,7 @@ class UiMainWindow(object):
         self.l_pet.setGeometry(QtCore.QRect(10, 50, 71, 31))
         self.l_pet.setFont(font)
         self.l_pet.setAlignment(QtCore.Qt.AlignCenter)
+        self.l_pet.setToolTip("Проходил ли пацинет позитронно-эмиссионную томографию?")
         self.l_pet.setObjectName("l_pet")
 
         self.cb_pet.setGeometry(QtCore.QRect(100, 50, 104, 31))
@@ -88,6 +90,7 @@ class UiMainWindow(object):
         self.l_mzo.setGeometry(QtCore.QRect(10, 90, 71, 31))
         self.l_mzo.setFont(font)
         self.l_mzo.setAlignment(QtCore.Qt.AlignCenter)
+        self.l_mzo.setToolTip("МЗО - метаболически нездоровое ожирение\nМНО - международное нормализованное отношение")
         self.l_mzo.setObjectName("l_mzo")
 
         self.cb_mzo.setGeometry(QtCore.QRect(100, 90, 104, 31))
@@ -101,6 +104,7 @@ class UiMainWindow(object):
         self.l_ohs.setFont(font)
         self.l_ohs.setAlignment(QtCore.Qt.AlignCenter)
         self.l_ohs.setObjectName("l_ohs")
+        self.l_ohs.setToolTip("Общий холестирин ммоль/л")
 
         self.te_ohs.setGeometry(QtCore.QRect(100, 130, 104, 31))
         self.te_ohs.setObjectName("te_ohs")
@@ -111,6 +115,7 @@ class UiMainWindow(object):
         self.l_lpvp.setFont(font)
         self.l_lpvp.setAlignment(QtCore.Qt.AlignCenter)
         self.l_lpvp.setObjectName("l_lpvp")
+        self.l_lpvp.setToolTip("Липопротеины высокой плотности ммоль/л")
 
         self.te_lpvp.setGeometry(QtCore.QRect(100, 170, 104, 31))
         self.te_lpvp.setObjectName("te_lpvp")
@@ -121,6 +126,7 @@ class UiMainWindow(object):
         self.l_lpnp.setFont(font)
         self.l_lpnp.setAlignment(QtCore.Qt.AlignCenter)
         self.l_lpnp.setObjectName("l_lpnp")
+        self.l_lpnp.setToolTip("Липопротеины низкой плотности ммоль/л")
 
         self.te_lpnp.setGeometry(QtCore.QRect(330, 10, 104, 31))
         self.te_lpnp.setObjectName("te_lpnp")
@@ -131,6 +137,7 @@ class UiMainWindow(object):
         self.l_tg.setFont(font)
         self.l_tg.setAlignment(QtCore.Qt.AlignCenter)
         self.l_tg.setObjectName("l_tg")
+        self.l_tg.setToolTip("Тиреоглобулин нг/мл")
 
         self.te_tg.setGeometry(QtCore.QRect(330, 50, 104, 31))
         self.te_tg.setObjectName("te_tg")
@@ -141,6 +148,7 @@ class UiMainWindow(object):
         self.l_height.setFont(font)
         self.l_height.setAlignment(QtCore.Qt.AlignCenter)
         self.l_height.setObjectName("l_height")
+        self.l_height.setToolTip("Рост см")
 
         self.te_height.setGeometry(QtCore.QRect(330, 90, 104, 31))
         self.te_height.setObjectName("te_height")
@@ -151,6 +159,7 @@ class UiMainWindow(object):
         self.l_hips_girph.setFont(font)
         self.l_hips_girph.setAlignment(QtCore.Qt.AlignCenter)
         self.l_hips_girph.setObjectName("l_hips_girph")
+        self.l_hips_girph.setToolTip("Обхват бедер см")
 
         self.te_hips_girph.setGeometry(QtCore.QRect(330, 130, 104, 31))
         self.te_hips_girph.setObjectName("te_hips_girph")
@@ -161,6 +170,7 @@ class UiMainWindow(object):
         self.l_glucose.setFont(font)
         self.l_glucose.setAlignment(QtCore.Qt.AlignCenter)
         self.l_glucose.setObjectName("l_glucose")
+        self.l_glucose.setToolTip("Уровень глюкозы натощак ммоль/л")
 
         self.te_glucose.setGeometry(QtCore.QRect(330, 170, 104, 31))
         self.te_glucose.setObjectName("te_glucose")
@@ -171,45 +181,55 @@ class UiMainWindow(object):
         self.l_noms_index_ir.setFont(font)
         self.l_noms_index_ir.setAlignment(QtCore.Qt.AlignCenter)
         self.l_noms_index_ir.setObjectName("l_noms_index_ir")
+        self.l_noms_index_ir.setToolTip("Индекс инсулинорезистентности")
 
         self.te_noms_index_ir.setGeometry(QtCore.QRect(610, 10, 104, 31))
         self.te_noms_index_ir.setObjectName("te_noms_index_ir")
+        self.te_noms_index_ir.setToolTip("Введите число от 2 до 23")
         self.text_edits.append(self.te_noms_index_ir)
 
         self.l_weight.setGeometry(QtCore.QRect(480, 50, 141, 31))
         self.l_weight.setFont(font)
         self.l_weight.setAlignment(QtCore.Qt.AlignCenter)
         self.l_weight.setObjectName("l_weight")
+        self.l_weight.setToolTip("Вес кг")
 
         self.te_weight.setGeometry(QtCore.QRect(610, 50, 104, 31))
         self.te_weight.setObjectName("te_weight")
+        self.te_weight.setToolTip("Введите число от 70 до 160")
         self.text_edits.append(self.te_weight)
 
         self.l_waist.setGeometry(QtCore.QRect(480, 90, 141, 31))
         self.l_waist.setFont(font)
         self.l_waist.setAlignment(QtCore.Qt.AlignCenter)
         self.l_waist.setObjectName("l_waist")
+        self.l_waist.setToolTip("Обхват талии см")
 
         self.te_waist.setGeometry(QtCore.QRect(610, 90, 104, 31))
         self.te_waist.setObjectName("te_waist")
+        self.te_waist.setToolTip("Введите число от 85 до 150")
         self.text_edits.append(self.te_waist)
 
         self.l_pulse.setGeometry(QtCore.QRect(480, 130, 141, 31))
         self.l_pulse.setFont(font)
         self.l_pulse.setAlignment(QtCore.Qt.AlignCenter)
         self.l_pulse.setObjectName("l_pulse")
+        self.l_pulse.setToolTip("Пульс ударов/мин")
 
         self.te_pulse.setGeometry(QtCore.QRect(610, 130, 104, 31))
         self.te_pulse.setObjectName("te_pulse")
+        self.te_pulse.setToolTip("Введите число от 50 до 100")
         self.text_edits.append(self.te_pulse)
 
         self.l_insulin.setGeometry(QtCore.QRect(480, 170, 141, 31))
         self.l_insulin.setFont(font)
         self.l_insulin.setAlignment(QtCore.Qt.AlignCenter)
         self.l_insulin.setObjectName("l_insulin")
+        self.l_insulin.setToolTip("Инсулин мкЕд/мл")
 
         self.te_insulin.setGeometry(QtCore.QRect(610, 170, 104, 31))
         self.te_insulin.setObjectName("te_insulin")
+        self.te_insulin.setToolTip("Введите число от 72 до 335")
         self.text_edits.append(self.te_insulin)
 
         self.btn_prediction.setGeometry(QtCore.QRect(320, 230, 121, 51))
@@ -259,14 +279,21 @@ class UiMainWindow(object):
         self.data = []
         for text_edit in self.text_edits:
             if text_edit in [self.te_snils, self.cb_pet, self.cb_mzo, self.te_ohs, self.te_lpvp, self.te_lpnp,
-                             self.te_tg, self.te_height, self.te_hips_girph, self.te_glucose]:
+                             self.te_tg, self.te_height, self.te_hips_girph, self.te_glucose, self.te_noms_index_ir,
+                             self.te_weight, self.te_waist, self.te_pulse, self.te_insulin]:
                 if text_edit in [self.cb_pet, self.cb_mzo]:
                     self.data.append(text_edit.currentText())
                     continue
                 self.data.append(text_edit.toPlainText())
         self.person2 = person.Person(self.data)
         if not self.person2.is_good_data():
-            print("Данные не корректные")
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Введены некорректные данные!")
+            msg.setInformativeText("Внимательно проверьте и введите ещё раз!")
+            msg.setWindowTitle("Ошибка!")
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec_()
             return False
         for text_edit in self.text_edits:
             if text_edit in [self.te_snils]:
