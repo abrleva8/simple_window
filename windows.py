@@ -1,5 +1,4 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-# from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QMessageBox
 
 import math_module
@@ -29,8 +28,6 @@ class UiMainWindow(object):
         self.l_waist = QtWidgets.QLabel(self.centralwidget)
         self.te_weight = QtWidgets.QTextEdit(self.centralwidget)
         self.l_weight = QtWidgets.QLabel(self.centralwidget)
-        self.te_noms_index_ir = QtWidgets.QTextEdit(self.centralwidget)
-        self.l_noms_index_ir = QtWidgets.QLabel(self.centralwidget)
         self.te_glucose = QtWidgets.QTextEdit(self.centralwidget)
         self.l_glucose = QtWidgets.QLabel(self.centralwidget)
         self.te_hips_girph = QtWidgets.QTextEdit(self.centralwidget)
@@ -49,6 +46,10 @@ class UiMainWindow(object):
         self.l_mzo = QtWidgets.QLabel(self.centralwidget)
         self.cb_pet = QtWidgets.QComboBox(self.centralwidget)
         self.l_pet = QtWidgets.QLabel(self.centralwidget)
+        self.cb_sex = QtWidgets.QComboBox(self.centralwidget)
+        self.l_sex = QtWidgets.QLabel(self.centralwidget)
+        self.te_result = QtWidgets.QTextEdit(self.centralwidget)
+        self.l_result = QtWidgets.QLabel(self.centralwidget)
 
     def setup_ui(self, main_window_):
         main_window_.setObjectName("MainWindow")
@@ -177,16 +178,18 @@ class UiMainWindow(object):
         self.te_glucose.setToolTip("Введите число от 4 до 7")
         self.text_edits.append(self.te_glucose)
 
-        self.l_noms_index_ir.setGeometry(QtCore.QRect(470, 10, 141, 31))
-        self.l_noms_index_ir.setFont(font)
-        self.l_noms_index_ir.setAlignment(QtCore.Qt.AlignCenter)
-        self.l_noms_index_ir.setObjectName("l_noms_index_ir")
-        self.l_noms_index_ir.setToolTip("Индекс инсулинорезистентности")
+        self.cb_sex.setGeometry(QtCore.QRect(610, 10, 104, 31))
+        self.cb_sex.setFont(font)
+        self.cb_sex.setObjectName("cb_sex")
+        self.cb_sex.addItem("")
+        self.cb_sex.addItem("")
+        self.text_edits.append(self.cb_sex)
 
-        self.te_noms_index_ir.setGeometry(QtCore.QRect(610, 10, 104, 31))
-        self.te_noms_index_ir.setObjectName("te_noms_index_ir")
-        self.te_noms_index_ir.setToolTip("Введите число от 2 до 23")
-        self.text_edits.append(self.te_noms_index_ir)
+        self.l_sex.setGeometry(QtCore.QRect(470, 10, 141, 31))
+        self.l_sex.setFont(font)
+        self.l_sex.setAlignment(QtCore.Qt.AlignCenter)
+        self.l_sex.setToolTip("Пол пациента")
+        self.l_sex.setObjectName("l_sex")
 
         self.l_weight.setGeometry(QtCore.QRect(480, 50, 141, 31))
         self.l_weight.setFont(font)
@@ -232,7 +235,16 @@ class UiMainWindow(object):
         self.te_insulin.setToolTip("Введите число от 72 до 335")
         self.text_edits.append(self.te_insulin)
 
-        self.btn_prediction.setGeometry(QtCore.QRect(320, 230, 121, 51))
+        self.l_result.setGeometry(QtCore.QRect(420, 230, 141, 31))
+        self.l_result.setFont(font)
+        self.l_result.setAlignment(QtCore.Qt.AlignCenter)
+        self.l_result.setObjectName("l_result")
+
+        self.te_result.setGeometry(QtCore.QRect(535, 220, 181, 61))
+        self.te_result.setObjectName("te_result")
+        self.te_result.setReadOnly(True)
+
+        self.btn_prediction.setGeometry(QtCore.QRect(90, 230, 116, 51))
         self.btn_prediction.setObjectName("btn_prediction")
         self.btn_prediction.clicked.connect(self.get_data_from_label)
 
@@ -260,10 +272,12 @@ class UiMainWindow(object):
         self.cb_mzo.setItemText(1, _translate("MainWindow", "МНО"))
         self.cb_pet.setItemText(0, _translate("MainWindow", "да"))
         self.cb_pet.setItemText(1, _translate("MainWindow", "нет"))
+        self.cb_sex.setItemText(0, _translate("MainWindow", "муж"))
+        self.cb_sex.setItemText(1, _translate("MainWindow", "жен"))
         self.l_pet.setText(_translate("MainWindow", "ПЭТ"))
+        self.l_sex.setText(_translate("MainWindow", "Пол"))
         self.btn_prediction.setText(_translate("MainWindow", "Предсказать"))
         self.l_lpnp.setText(_translate("MainWindow", "ЛПНП"))
-        self.l_noms_index_ir.setText(_translate("MainWindow", "Индекс Нома - IR"))
         self.l_hips_girph.setText(_translate("MainWindow", "Обхват бедер"))
         self.l_height.setText(_translate("MainWindow", "Рост"))
         self.l_glucose.setText(_translate("MainWindow", "Глюкоза"))
@@ -271,6 +285,7 @@ class UiMainWindow(object):
         self.l_waist.setText(_translate("MainWindow", "Обхват талии"))
         self.l_pulse.setText(_translate("MainWindow", "Пульс"))
         self.l_insulin.setText(_translate("MainWindow", "Инсулин"))
+        self.l_result.setText(_translate("MainWindow", "Результат"))
 
     def get_data_from_label(self):
         self.data_sibutramin = []
@@ -279,7 +294,7 @@ class UiMainWindow(object):
         self.data = []
         for text_edit in self.text_edits:
             if text_edit in [self.te_snils, self.cb_pet, self.cb_mzo, self.te_ohs, self.te_lpvp, self.te_lpnp,
-                             self.te_tg, self.te_height, self.te_hips_girph, self.te_glucose, self.te_noms_index_ir,
+                             self.te_tg, self.te_height, self.te_hips_girph, self.te_glucose,
                              self.te_weight, self.te_waist, self.te_pulse, self.te_insulin]:
                 if text_edit in [self.cb_pet, self.cb_mzo]:
                     self.data.append(text_edit.currentText())
@@ -298,7 +313,7 @@ class UiMainWindow(object):
         for text_edit in self.text_edits:
             if text_edit in [self.te_snils]:
                 continue
-            if text_edit in [self.te_height, self.te_glucose, self.te_hips_girph, self.te_noms_index_ir]:
+            if text_edit in [self.te_height, self.te_glucose, self.te_hips_girph]:
                 data_to_add_diet = text_edit.toPlainText()
                 self.data_diet.append(float(data_to_add_diet))
                 continue
@@ -310,22 +325,25 @@ class UiMainWindow(object):
                 data_to_add_sibutramin = 1 if text_edit.currentText() == 'да' else 0
             elif text_edit == self.cb_mzo:
                 data_to_add_sibutramin = 1 if text_edit.currentText() == 'МЗО' else 0
+            elif text_edit in [self.cb_sex, self.te_result]:
+                continue
             else:
                 data_to_add_sibutramin = text_edit.toPlainText()
             self.data_sibutramin.append(float(data_to_add_sibutramin))
+        self.data_diet.append(self.person2.index_noma)
 
-        # print(self.data_sibutramin)
-        # print(self.data_diet)
-        # print(self.data_liragrutid)
+        print(self.data_sibutramin)
+        print(self.data_diet)
+        print(self.data_liragrutid)
 
-        math_module.some_work("sibutramin17_05.pkl", self.data_sibutramin)
-        math_module.some_work("diet_21_05.pkl", self.data_diet)
-        math_module.some_work("liragrutid_23_05.pkl", self.data_liragrutid)
+        res_number, res_drug = math_module.max_predict(self.data_sibutramin, self.data_diet, self.data_liragrutid)
+        self.te_result.setPlainText(f"Принимая {res_drug} вы похудеете на {res_number}% в течение 3 месяцев")
+        # math_module.some_work("diet_21_05.pkl", self.data_diet)
+        # math_module.some_work("liragrutid_23_05.pkl", self.data_liragrutid)
 
 
 if __name__ == '__main__':
     import sys
-
     app = QtWidgets.QApplication(sys.argv)
     main_window = QtWidgets.QMainWindow()
     ui = UiMainWindow(main_window)

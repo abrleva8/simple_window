@@ -11,11 +11,11 @@ class Person(object):
         self.height = data[7]
         self.hips_girph = data[8]
         self.glucose = data[9]
-        self.index_noma = data[10]
-        self.weight = data[11]
-        self.waist = data[12]
-        self.pulse = data[13]
-        self.insuline = data[14]
+        self.weight = data[10]
+        self.waist = data[11]
+        self.pulse = data[12]
+        self.insuline = data[13]
+        self.set_index_noma()
 
     def is_good_snils(self):
         try:
@@ -73,12 +73,12 @@ class Person(object):
             return False
         return True if 4 <= number <= 7 else False
 
-    def is_good_index_noma(self):
-        try:
-            number = float(self.index_noma)
-        except ValueError:
-            return False
-        return True if 2 <= number <= 23 else False
+    # def is_good_index_noma(self):
+    #     try:
+    #         number = float(self.index_noma)
+    #     except ValueError:
+    #         return False
+    #     return True if 2 <= number <= 23 else False
 
     def is_good_weight(self):
         try:
@@ -108,8 +108,12 @@ class Person(object):
             return False
         return True if 72 <= number <= 335 else False
 
+    def set_index_noma(self):
+        if self.is_good_insuline() and self.is_good_glucose():
+            self.index_noma = float(self.insuline) * float(self.glucose) / 22.5
+
     def is_good_data(self):
         return self.is_good_snils() and self.is_good_ohs() and self.is_good_lpvp() and self.is_good_lpnp() \
                and self.is_good_tg() and self.is_good_height() and self.is_good_hips_girph() and self.is_good_glucose()\
-               and self.is_good_index_noma() and self.is_good_weight() and self.is_good_waist() and self.is_good_pulse()\
+               and self.is_good_weight() and self.is_good_waist() and self.is_good_pulse()\
                and self.is_good_insuline()
