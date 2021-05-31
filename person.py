@@ -114,6 +114,7 @@ class Person(object):
 
     def is_good_data(self):
         return self.is_good_snils() and self.is_good_ohs() and self.is_good_lpvp() and self.is_good_lpnp() \
-               and self.is_good_tg() and self.is_good_height() and self.is_good_hips_girph() and self.is_good_glucose()\
-               and self.is_good_weight() and self.is_good_waist() and self.is_good_pulse()\
+               and self.is_good_tg() and self.is_good_height() and self.is_good_hips_girph() and self.is_good_glucose() \
+               and self.is_good_weight() and self.is_good_waist() and self.is_good_pulse() \
                and self.is_good_insuline()
+

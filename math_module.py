@@ -8,7 +8,7 @@ def predict(clf, data):
     pd_array = preprocessing.scale(pd_array)
     pd_array = pd_array.transpose()
     result = clf.predict(pd_array)
-    return result[0]
+    return round(result[0], 2)
 
 
 def predict_from_file(filename, data):
@@ -27,6 +27,6 @@ def max_predict(data_sib, data_diet, data_ligur):
     if sib_predict == max_:
         return sib_predict, "сибутрамин"
     elif diet_predict == max_:
-        return diet_predict, "диета"
+        return diet_predict, "диетy"
     else:
         return ligur_predict, "лирагрутид"
