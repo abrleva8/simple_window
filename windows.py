@@ -2,9 +2,11 @@ import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QFileDialog
+from functools import partial
 
 import math_module
 import person
+import drug
 
 
 def about_information():
@@ -35,6 +37,7 @@ class UiMainWindow(object):
     data_liragrutid = []
     data = []
     person2 = person.Person([0] * 15)
+    drugs = None
 
     def __init__(self, main_window_):
         self.statusbar = QtWidgets.QStatusBar(main_window_)
@@ -291,6 +294,7 @@ class UiMainWindow(object):
         self.action_save = QtWidgets.QAction(main_window_)
         self.action_save.setObjectName("actionSave")
         self.action_save.triggered.connect(self.file_save)
+        # self.action_save.triggered.connect(partial(self.file_save, self.drugs))
         self.menu_file.addAction(self.action_save)
 
         self.action_about = QtWidgets.QAction(main_window_)
@@ -373,7 +377,8 @@ class UiMainWindow(object):
         print(self.data_diet)
         print(self.data_liragrutid)
 
-        res_number, res_drug = math_module.max_predict(self.data_sibutramin, self.data_diet, self.data_liragrutid)
+        res_number, res_drug, self.drugs = math_module.max_predict(self.data_sibutramin, self.data_diet,
+                                                                   self.data_liragrutid)
         verb = "Соблюдая" if res_drug == "диетy" else "Принимая"
         self.te_result.setPlainText(f"{verb} {res_drug} пациент похудеет на {res_number}% в течение 3 месяцев")
 
@@ -391,6 +396,7 @@ class UiMainWindow(object):
         if os.path.isfile(file_name) and self.person2.is_good_data():
             file = open(file_name, 'w')
             text = self.person2.data_to_save()
+            text = text + self.drugs.using()
             file.write(text)
             file.close()
         else:

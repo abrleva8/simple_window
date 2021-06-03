@@ -18,7 +18,7 @@ class Person(object):
         self.insuline = data[14]
         self.set_index_noma()
 
-    def check_snils(self, digits=True):
+    def is_good_snils(self):
         if len(self.snils) != 14:
             return False
 
@@ -35,14 +35,6 @@ class Person(object):
             csum = 0
 
         return csum == int(self.snils[-2:])
-
-
-    def is_good_snils(self):
-        try:
-            number = float(self.snils)
-        except ValueError:
-            return False
-        return True if number > 0 else False
 
     def is_good_ohs(self):
         try:
@@ -133,7 +125,7 @@ class Person(object):
             self.index_noma = float(self.insuline) * float(self.glucose) / 22.5
 
     def is_good_data(self):
-        return self.check_snils() and self.is_good_ohs() and self.is_good_lpvp() and self.is_good_lpnp() \
+        return self.is_good_snils() and self.is_good_ohs() and self.is_good_lpvp() and self.is_good_lpnp() \
                and self.is_good_tg() and self.is_good_height() and self.is_good_hips_girph() and self.is_good_glucose() \
                and self.is_good_weight() and self.is_good_waist() and self.is_good_pulse() \
                and self.is_good_insuline()
@@ -154,4 +146,4 @@ class Person(object):
                f'Обхват талии: {self.waist} см\n' \
                f'Пульс: {self.pulse} уд/мин\n' \
                f'Инсулин: {self.insuline} мкЕд/мл\n' \
-               f'Индекс-НОМА: {round(self.index_noma, 2)} \n' \
+               f'Индекс-НОМА: {round(self.index_noma, 2)} \n'

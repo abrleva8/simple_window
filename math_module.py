@@ -1,5 +1,6 @@
 import pickle
 import pandas as pd
+import drug
 from sklearn import preprocessing
 
 
@@ -25,8 +26,8 @@ def max_predict(data_sib, data_diet, data_ligur):
     ligur_predict = predict_from_file("liragrutid_23_05.pkl", data_ligur)
     max_ = max(sib_predict, diet_predict, ligur_predict)
     if sib_predict == max_:
-        return sib_predict, "сибутрамин"
+        return sib_predict, "сибутрамин", drug.Sibutramin()
     elif diet_predict == max_:
-        return diet_predict, "диетy"
+        return diet_predict, "диетy", drug.Diet()
     else:
-        return ligur_predict, "лираглутид"
+        return ligur_predict, "лираглутид", drug.Liraglutid()
