@@ -11,11 +11,31 @@ class Person(object):
         self.height = data[7]
         self.hips_girph = data[8]
         self.glucose = data[9]
-        self.weight = data[10]
-        self.waist = data[11]
-        self.pulse = data[12]
-        self.insuline = data[13]
+        self.sex = data[10]
+        self.weight = data[11]
+        self.waist = data[12]
+        self.pulse = data[13]
+        self.insuline = data[14]
         self.set_index_noma()
+
+    def check_snils(self, digits=True):
+        if len(self.snils) != 14:
+            return False
+
+        def snils_csum(snils):
+            k = range(9, 0, -1)
+            pairs = zip(k, [int(x) for x in snils.replace('-', '').replace(' ', '')[:-2]])
+            return sum([k * v for k, v in pairs])
+
+        csum = snils_csum(self.snils)
+
+        while csum > 101:
+            csum %= 101
+        if csum in (100, 101):
+            csum = 0
+
+        return csum == int(self.snils[-2:])
+
 
     def is_good_snils(self):
         try:
@@ -113,8 +133,25 @@ class Person(object):
             self.index_noma = float(self.insuline) * float(self.glucose) / 22.5
 
     def is_good_data(self):
-        return self.is_good_snils() and self.is_good_ohs() and self.is_good_lpvp() and self.is_good_lpnp() \
+        return self.check_snils() and self.is_good_ohs() and self.is_good_lpvp() and self.is_good_lpnp() \
                and self.is_good_tg() and self.is_good_height() and self.is_good_hips_girph() and self.is_good_glucose() \
                and self.is_good_weight() and self.is_good_waist() and self.is_good_pulse() \
                and self.is_good_insuline()
 
+    def data_to_save(self):
+        return f'СНИЛС: {self.snils}\n' \
+               f'Пол: {self.sex}\n' \
+               f'ПЭТ: {self.pat}\n' \
+               f'МЗО/МНО: {self.mzo} \n' \
+               f'ОХС: {self.ohs} ммоль/л\n' \
+               f'ЛПВП: {self.lpvp} ммоль/л\n' \
+               f'ЛПНП: {self.lpnp} ммоль/л\n' \
+               f'Тиреоглобулин: {self.tg} нг/мл\n' \
+               f'Рост: {self.height} см\n' \
+               f'Обхват бедер: {self.hips_girph} см\n' \
+               f'Глюкоза: {self.glucose} ммоль/л\n' \
+               f'Вес: {self.weight} кг\n' \
+               f'Обхват талии: {self.waist} см\n' \
+               f'Пульс: {self.pulse} уд/мин\n' \
+               f'Инсулин: {self.insuline} мкЕд/мл\n' \
+               f'Индекс-НОМА: {round(self.index_noma, 2)} \n' \

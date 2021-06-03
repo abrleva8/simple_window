@@ -29,4 +29,4 @@ def max_predict(data_sib, data_diet, data_ligur):
     elif diet_predict == max_:
         return diet_predict, "диетy"
     else:
-        return ligur_predict, "лирагрутид"
+        return ligur_predict, "лираглутид"

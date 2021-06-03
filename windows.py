@@ -7,13 +7,34 @@ import math_module
 import person
 
 
+def about_information():
+    msg = QMessageBox()
+    msg.setIcon(QMessageBox.Information)
+    msg.setText("Внимание!")
+    msg.setInformativeText("Программа предназначена только для врачей с соответствующей специализацией!\n"
+                           "Использование лекарств не по назначению может привести к нежелательным исходам!")
+    msg.setWindowTitle("Предсказание метода лечения")
+    msg.setStandardButtons(QMessageBox.Ok)
+    msg.exec_()
+
+
+def error_windows(text, inf_text, title_text):
+    msg = QMessageBox()
+    msg.setIcon(QMessageBox.Critical)
+    msg.setText(text)
+    msg.setInformativeText(inf_text)
+    msg.setWindowTitle(title_text)
+    msg.setStandardButtons(QMessageBox.Ok)
+    msg.exec_()
+
+
 class UiMainWindow(object):
     text_edits = []
     data_sibutramin = []
     data_diet = []
     data_liragrutid = []
     data = []
-    person2 = None
+    person2 = person.Person([0] * 15)
 
     def __init__(self, main_window_):
         self.statusbar = QtWidgets.QStatusBar(main_window_)
@@ -74,7 +95,7 @@ class UiMainWindow(object):
 
         self.te_snils.setGeometry(QtCore.QRect(150, 10, 104, 31))
         self.te_snils.setObjectName("te_snils")
-        self.te_snils.setToolTip("Введите положительное число")
+        self.te_snils.setToolTip("Введите СНИЛС в форме XXX-XXX-XX YY")
         self.text_edits.append(self.te_snils)
 
         self.l_pet.setGeometry(QtCore.QRect(10, 50, 130, 31))
@@ -274,7 +295,7 @@ class UiMainWindow(object):
 
         self.action_about = QtWidgets.QAction(main_window_)
         self.action_about.setObjectName("action_about")
-        self.action_about.triggered.connect(self.openFile)
+        self.action_about.triggered.connect(about_information)
         self.menu_help.addAction(self.action_about)
 
         self.retranslate_ui(main_window_)
@@ -282,7 +303,7 @@ class UiMainWindow(object):
 
     def retranslate_ui(self, main_window_):
         _translate = QtCore.QCoreApplication.translate
-        main_window_.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        main_window_.setWindowTitle(_translate("MainWindow", "Предсказание метода лечения"))
         self.menu_file.setTitle(_translate("MainWindow", "Файл"))
         self.menu_help.setTitle(_translate("MainWindow", "Помощь"))
         self.l_snils.setText(_translate("MainWindow", "СНИЛС"))
@@ -311,37 +332,20 @@ class UiMainWindow(object):
         self.action_save.setText(_translate("MainWindow", "Сохранить"))
         self.action_about.setText(_translate("MainWindow", "О программе"))
 
-    def openFile(self):
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Information)
-        msg.setText("Введены некорректные данные!")
-        msg.setInformativeText("Внимательно проверьте и введите ещё раз!")
-        msg.setWindowTitle("Предсказание метода лечения")
-        msg.setStandardButtons(QMessageBox.Ok)
-        msg.exec_()
-
     def get_data_from_label(self):
         self.data_sibutramin = []
         self.data_diet = []
         self.data_liragrutid = []
         self.data = []
         for text_edit in self.text_edits:
-            if text_edit in [self.te_snils, self.cb_pet, self.cb_mzo, self.te_ohs, self.te_lpvp, self.te_lpnp,
-                             self.te_tg, self.te_height, self.te_hips_girph, self.te_glucose,
-                             self.te_weight, self.te_waist, self.te_pulse, self.te_insulin]:
-                if text_edit in [self.cb_pet, self.cb_mzo]:
-                    self.data.append(text_edit.currentText())
-                    continue
-                self.data.append(text_edit.toPlainText())
+            if text_edit in [self.cb_pet, self.cb_mzo, self.cb_sex]:
+                self.data.append(text_edit.currentText())
+                continue
+            self.data.append(text_edit.toPlainText())
         self.person2 = person.Person(self.data)
+        print(*self.data)
         if not self.person2.is_good_data():
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Введены некорректные данные!")
-            msg.setInformativeText("Внимательно проверьте и введите ещё раз!")
-            msg.setWindowTitle("Ошибка!")
-            msg.setStandardButtons(QMessageBox.Ok)
-            msg.exec_()
+            error_windows("Введены некорректные данные!", "Внимательно проверьте и введите ещё раз!", "Ошибка!")
             return False
         for text_edit in self.text_edits:
             if text_edit in [self.te_snils]:
@@ -371,29 +375,31 @@ class UiMainWindow(object):
 
         res_number, res_drug = math_module.max_predict(self.data_sibutramin, self.data_diet, self.data_liragrutid)
         verb = "Соблюдая" if res_drug == "диетy" else "Принимая"
-        self.te_result.setPlainText(f"{verb} {res_drug} вы похудеете на {res_number}% в течение 3 месяцев")
+        self.te_result.setPlainText(f"{verb} {res_drug} пациент похудеет на {res_number}% в течение 3 месяцев")
 
     def file_save(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        file_name, _ = QFileDialog.getSaveFileName(None, "QFileDialog.getSaveFileName()", "", "All Files (*);;Python Files (*.py)", options=options)
-        if os.path.isfile(file_name):
+        file_name, _ = QFileDialog.getSaveFileName(None, "QFileDialog.getSaveFileName()", "", "All Files (*);;Python "
+                                                                                              "Files (*.py)",
+                                                   options=options)
+        try:
             file = open(file_name, 'w')
-            text = self.te_insulin.toPlainText()
+            file.close()
+        except FileNotFoundError:
+            print('Файл не существует!')
+        if os.path.isfile(file_name) and self.person2.is_good_data():
+            file = open(file_name, 'w')
+            text = self.person2.data_to_save()
             file.write(text)
             file.close()
         else:
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Файл не был создан!")
-            msg.setInformativeText("Внимательно проверьте и введите ещё раз!")
-            msg.setWindowTitle("Ошибка!")
-            msg.setStandardButtons(QMessageBox.Ok)
-            msg.exec_()
+            error_windows("Файл не был создан!", "Внимательно проверьте и введите ещё раз!", "Ошибка!")
 
 
 if __name__ == '__main__':
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     main_window = QtWidgets.QMainWindow()
     ui = UiMainWindow(main_window)
