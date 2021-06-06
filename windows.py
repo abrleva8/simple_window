@@ -101,7 +101,7 @@ class UiMainWindow(object):
         self.te_snils.setGeometry(QtCore.QRect(150, 10, 104, 31))
         self.te_snils.setObjectName("te_snils")
         self.te_snils.setToolTip("Введите СНИЛС в форме XXX-XXX-XX YY")
-        # self.te_snils.setText("")
+        self.te_snils.setText("116-973-385 89")
         self.te_snils.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_snils)
 
@@ -140,6 +140,7 @@ class UiMainWindow(object):
         self.te_ohs.setGeometry(QtCore.QRect(150, 130, 104, 31))
         self.te_ohs.setObjectName("te_ohs")
         self.te_ohs.setToolTip("Введите число от 2 до 9")
+        self.te_ohs.setText("5.5")
         self.te_ohs.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_ohs)
 
@@ -152,6 +153,7 @@ class UiMainWindow(object):
         self.te_lpvp.setGeometry(QtCore.QRect(150, 170, 104, 31))
         self.te_lpvp.setObjectName("te_lpvp")
         self.te_lpvp.setToolTip("Введите число от 0 до 3")
+        self.te_lpvp.setText("1")
         self.te_lpvp.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_lpvp)
 
@@ -164,6 +166,7 @@ class UiMainWindow(object):
         self.te_lpnp.setGeometry(QtCore.QRect(430, 10, 104, 31))
         self.te_lpnp.setObjectName("te_lpnp")
         self.te_lpnp.setToolTip("Введите число от 1.5 до 5")
+        self.te_lpnp.setText("4")
         self.te_lpnp.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_lpnp)
 
@@ -176,6 +179,7 @@ class UiMainWindow(object):
         self.te_tg.setGeometry(QtCore.QRect(430, 50, 104, 31))
         self.te_tg.setObjectName("te_tg")
         self.te_tg.setToolTip("Введите число от 0.7 до 5")
+        self.te_tg.setText("3")
         self.te_tg.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_tg)
 
@@ -188,6 +192,7 @@ class UiMainWindow(object):
         self.te_height.setGeometry(QtCore.QRect(430, 90, 104, 31))
         self.te_height.setObjectName("te_height")
         self.te_height.setToolTip("Введите число от 150 до 200")
+        self.te_height.setText("175")
         self.te_height.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_height)
 
@@ -200,6 +205,7 @@ class UiMainWindow(object):
         self.te_hips_girph.setGeometry(QtCore.QRect(430, 130, 104, 31))
         self.te_hips_girph.setObjectName("te_hips_girph")
         self.te_hips_girph.setToolTip("Введите число от 80 до 120")
+        self.te_hips_girph.setText("100")
         self.te_hips_girph.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_hips_girph)
 
@@ -212,6 +218,7 @@ class UiMainWindow(object):
         self.te_glucose.setGeometry(QtCore.QRect(430, 170, 104, 31))
         self.te_glucose.setObjectName("te_glucose")
         self.te_glucose.setToolTip("Введите число от 4 до 7")
+        self.te_glucose.setText("5.5")
         self.te_glucose.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_glucose)
 
@@ -237,6 +244,7 @@ class UiMainWindow(object):
         self.te_weight.setGeometry(QtCore.QRect(710, 50, 104, 31))
         self.te_weight.setObjectName("te_weight")
         self.te_weight.setToolTip("Введите число от 70 до 160")
+        self.te_weight.setText("1000")
         self.te_weight.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_weight)
 
@@ -249,6 +257,7 @@ class UiMainWindow(object):
         self.te_waist.setGeometry(QtCore.QRect(710, 90, 104, 31))
         self.te_waist.setObjectName("te_waist")
         self.te_waist.setToolTip("Введите число от 85 до 150")
+        self.te_waist.setText("130")
         self.te_waist.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_waist)
 
@@ -261,6 +270,7 @@ class UiMainWindow(object):
         self.te_pulse.setGeometry(QtCore.QRect(710, 130, 104, 31))
         self.te_pulse.setObjectName("te_pulse")
         self.te_pulse.setToolTip("Введите число от 50 до 100")
+        self.te_pulse.setText("75")
         self.te_pulse.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_pulse)
 
@@ -273,6 +283,7 @@ class UiMainWindow(object):
         self.te_insulin.setGeometry(QtCore.QRect(710, 170, 104, 31))
         self.te_insulin.setObjectName("te_insulin")
         self.te_insulin.setToolTip("Введите число от 72 до 335")
+        self.te_insulin.setText("200")
         self.te_insulin.textChanged.connect(self.some_work)
         self.text_edits.append(self.te_insulin)
 
@@ -287,8 +298,8 @@ class UiMainWindow(object):
 
         self.btn_prediction.setGeometry(QtCore.QRect(90, 230, 116, 51))
         self.btn_prediction.setObjectName("btn_prediction")
+        self.btn_prediction.setDisabled(True)
         self.btn_prediction.clicked.connect(self.get_data_from_label)
-        # self.btn_prediction.
 
         main_window_.setCentralWidget(self.centralwidget)
 
@@ -309,8 +320,8 @@ class UiMainWindow(object):
 
         self.action_save = QtWidgets.QAction(main_window_)
         self.action_save.setObjectName("actionSave")
+        self.action_save.setDisabled(True)
         self.action_save.triggered.connect(self.file_save)
-        # self.action_save.triggered.connect(partial(self.file_save, self.drugs))
         self.menu_file.addAction(self.action_save)
 
         self.action_about = QtWidgets.QAction(main_window_)
@@ -370,6 +381,7 @@ class UiMainWindow(object):
         self.data_sibutramin = []
         self.data_diet = []
         self.data_liragrutid = []
+        # self.some_work()
         if not self.person2.is_good_data():
             error_windows("Введены некорректные данные!", "Внимательно проверьте и введите ещё раз!", "Ошибка!")
             return False
@@ -415,7 +427,8 @@ class UiMainWindow(object):
             file = open(file_name, 'w')
             file.close()
         except FileNotFoundError:
-            print('Файл не существует!')
+            error_windows("Файл не был создан!", "", "Внимание!")
+            return
         if os.path.isfile(file_name) and self.person2.is_good_data():
             file = open(file_name, 'w')
             text = self.person2.data_to_save()
@@ -423,7 +436,7 @@ class UiMainWindow(object):
             file.write(text)
             file.close()
         else:
-            error_windows("Файл не был создан!", "Внимательно проверьте и введите ещё раз!", "Ошибка!")
+            error_windows("Файл не был создан!", "", "Внимание!")
 
 
 if __name__ == '__main__':
