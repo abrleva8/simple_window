@@ -22,17 +22,25 @@ class Person(object):
         if len(self.snils) != 14:
             return False
 
+        if self.snils.count('-', 0, len(self.snils) - 1) != 2 or self.snils.count(' ', 0, len(self.snils) - 1) != 1:
+            return False
+
         def snils_csum(snils):
             k = range(9, 0, -1)
-            pairs = zip(k, [int(x) for x in snils.replace('-', '').replace(' ', '')[:-2]])
+            try:
+                pairs = zip(k, [int(x) for x in snils.replace('-', '').replace(' ', '')[:-2]])
+            except ValueError:
+                return -1
             return sum([k * v for k, v in pairs])
 
         csum = snils_csum(self.snils)
-
-        while csum > 101:
-            csum %= 101
-        if csum in (100, 101):
-            csum = 0
+        if csum == -1:
+            return False
+        else:
+            while csum > 101:
+                csum %= 101
+            if csum in (100, 101):
+                csum = 0
 
         return csum == int(self.snils[-2:])
 
@@ -147,3 +155,6 @@ class Person(object):
                f'Пульс: {self.pulse} уд/мин\n' \
                f'Инсулин: {self.insuline} мкЕд/мл\n' \
                f'Индекс-НОМА: {round(self.index_noma, 2)} \n'
+
+    def resulting_weight(self, num_per):
+        return round(float(self.weight) * num_per / 100, 2)
